@@ -20,22 +20,21 @@ const is_loot_routes = (app, fs) => {
             if (err) {
                 throw err;
             }
-
             callback();
         });
     };
 
     // READ
     app.get('/is_loot', (req, res) => {
-        fs.readFile(dataPath, 'utf8', (err, data) => {
-            if (err) {
-                throw err;
-            }
-            data["num"] = data["num"] == 1 ? 0 : 1;
+        readFile(data => {
+            var is_loot = data["num"] == 1;
+            data["num"] = is_loot ? 0 : 1;
             writeFile(JSON.stringify(data, null, 2), () => {
-                res.send((JSON.parse(data)["num"] == 1) ? "0" : "1");
+                console.log(is_loot ? "Loot" : "Skill");
+                res.send(is_loot ? "0" : "1");
             });
-        });
+        },
+        true);
     });
 };
 

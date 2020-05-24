@@ -20,34 +20,19 @@ const skill_data_routes = (app, fs) => {
             if (err) {
                 throw err;
             }
-
             callback();
         });
     };
 
-    // READ
-    app.get('/skill_data', (req, res) => {
-        fs.readFile(dataPath, 'utf8', (err, data) => {
-            if (err) {
-                throw err;
-            }
-
-            res.send(JSON.parse(data));
-        });
-    });
-
     // CREATE
     app.post('/skill_data', (req, res) => {
-
         readFile(data => {
             const newUserId = Object.keys(data).length + 1;
-
             var id = req.body.id;
             if (id >= newUserId) {
-
                 data[newUserId.toString()] = req.body;
-
                 writeFile(JSON.stringify(data, null, 2), () => {
+                    console.log("New Skill Data");
                     res.status(200).send('OK');
                 });
             }

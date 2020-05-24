@@ -15,28 +15,25 @@ const count_routes = (app, fs) => {
     };
 
     const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') => {
-
         fs.writeFile(filePath, fileData, encoding, (err) => {
             if (err) {
                 throw err;
             }
-
             callback();
         });
     };
 
     // READ
     app.get('/count', (req, res) => {
-        fs.readFile(dataPath, 'utf8', (err, data) => {
-            if (err) {
-                throw err;
-            }
-            data["num"] = data["num"] + 1;
+        readFile(data => {
+            var newID = data["num"] + 1;
+            data["num"] = newID;
             writeFile(JSON.stringify(data, null, 2), () => {
-                res.send(JSON.parse(data)["num"].toString());
+                console.log("\nNew ID: " + newID.toString());
+                res.send(newID.toString());
             });
-            
-        });
+        },
+        true);
     });
 };
 

@@ -15,39 +15,23 @@ const loot_data_routes = (app, fs) => {
     };
 
     const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') => {
-
         fs.writeFile(filePath, fileData, encoding, (err) => {
             if (err) {
                 throw err;
             }
-
             callback();
         });
     };
 
-    // READ
-    app.get('/loot_data', (req, res) => {
-        fs.readFile(dataPath, 'utf8', (err, data) => {
-            if (err) {
-                throw err;
-            }
-
-            res.send(JSON.parse(data));
-        });
-    });
-
     // CREATE
     app.post('/loot_data', (req, res) => {
-
         readFile(data => {
             const newUserId = Object.keys(data).length + 1;
-
             var id = req.body.id;
             if (id >= newUserId) {
-
                 data[newUserId.toString()] = req.body;
-
                 writeFile(JSON.stringify(data, null, 2), () => {
+                    console.log("New Loot Data");
                     res.status(200).send('OK');
                 });
             }
