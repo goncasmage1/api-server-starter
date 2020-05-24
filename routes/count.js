@@ -31,21 +31,12 @@ const count_routes = (app, fs) => {
             if (err) {
                 throw err;
             }
-            res.send(JSON.parse(data)["num"].toString());
-        });
-    });
-
-    // CREATE
-    app.post('/count', (req, res) => {
-
-        readFile(data => {
             data["num"] = data["num"] + 1;
-            
             writeFile(JSON.stringify(data, null, 2), () => {
-                res.status(200).send('OK');
+                res.send(JSON.parse(data)["num"].toString());
             });
-        },
-        true);
+            
+        });
     });
 };
 
