@@ -1,5 +1,8 @@
 // import other routes
-const userRoutes = require('./users');
+const countRoutes = require('./count');
+const isLootRoutes = require('./is_loot');
+const lootDataRoutes = require('./loot_data');
+const skillDataRoutes = require('./skill_data');
 
 const appRouter = (app, fs) => {
 
@@ -8,9 +11,10 @@ const appRouter = (app, fs) => {
         res.send('welcome to the development api-server');
     });
 
-    // // other routes
-    userRoutes(app, fs);
-
+    countRoutes(app, fs);
+    isLootRoutes(app, fs);
+    lootDataRoutes(app, fs);
+    skillDataRoutes(app, fs);
 };
 
 module.exports = appRouter;
