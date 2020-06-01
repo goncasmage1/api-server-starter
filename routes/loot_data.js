@@ -41,6 +41,14 @@ const loot_data_routes = (app, fs) => {
         },
         true);
     });
+    
+    // READ
+    app.get('/loot_data', (req, res) => {
+        readFile(data => {
+            res.send(data.toString());
+        },
+        true);
+    });
 };
 
 module.exports = loot_data_routes;
