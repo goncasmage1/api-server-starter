@@ -45,9 +45,9 @@ const loot_data_routes = (app, fs) => {
     // READ
     app.get('/loot_data', (req, res) => {
         readFile(data => {
-            res.send(data.toString());
+            res.send(data);
         },
-        true);
+        false);
     });
 };
 
