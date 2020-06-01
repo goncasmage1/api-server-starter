@@ -29,7 +29,7 @@ const count_routes = (app, fs) => {
             var newID = data["num"] + 1;
             data["num"] = newID;
             writeFile(JSON.stringify(data, null, 2), () => {
-                console.log("\nNew ID: " + newID.toString());
+                console.log("New ID: " + newID.toString());
                 res.send(newID.toString());
             });
         },
