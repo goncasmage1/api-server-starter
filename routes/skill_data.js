@@ -42,6 +42,14 @@ const skill_data_routes = (app, fs) => {
         },
         true);
     });
+    
+    // READ
+    app.get('/skill_data', (req, res) => {
+        readFile(data => {
+            res.send(data.toString());
+        },
+        true);
+    });
 };
 
 module.exports = skill_data_routes;
