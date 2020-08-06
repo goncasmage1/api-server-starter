@@ -37,7 +37,7 @@ const skill_data_routes = (app, fs) => {
             }
             else {
                 res.status(200).send('OK');
-            }z
+            }
         },
         true);
     });
