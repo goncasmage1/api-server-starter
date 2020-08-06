@@ -15,7 +15,6 @@ const skill_data_routes = (app, fs) => {
     };
 
     const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') => {
-
         fs.writeFile(filePath, fileData, encoding, (err) => {
             if (err) {
                 throw err;
@@ -31,7 +30,7 @@ const skill_data_routes = (app, fs) => {
             if (!data.hasOwnProperty(id.toString())) {
                 data[id.toString()] = req.body;
                 writeFile(JSON.stringify(data, null, 2), () => {
-                    console.log("New Loot Data");
+                    console.log("New Skill Data");
                     res.status(200).send('OK');
                 });
             }
