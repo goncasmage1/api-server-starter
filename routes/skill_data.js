@@ -27,18 +27,17 @@ const skill_data_routes = (app, fs) => {
     // CREATE
     app.post('/skill_data', (req, res) => {
         readFile(data => {
-            const newUserId = Object.keys(data).length + 1;
             var id = req.body.id;
-            if (id >= newUserId) {
-                data[newUserId.toString()] = req.body;
+            if (!data.hasOwnProperty(id.toString())) {
+                data[id.toString()] = req.body;
                 writeFile(JSON.stringify(data, null, 2), () => {
-                    console.log("New Skill Data");
+                    console.log("New Loot Data");
                     res.status(200).send('OK');
                 });
             }
             else {
                 res.status(200).send('OK');
-            }
+            }z
         },
         true);
     });
