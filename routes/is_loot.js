@@ -27,11 +27,12 @@ const is_loot_routes = (app, fs) => {
     // READ
     app.get('/is_loot', (req, res) => {
         readFile(data => {
-            var is_loot = data["num"] == 1;
-            data["num"] = is_loot ? 0 : 1;
+            var progressionModel = data["num"];
+            var oldProgressionModel = progressionModel;
+            data["num"] = progressionModel >= 2 ? 0 : progressionModel + 1;
             writeFile(JSON.stringify(data, null, 2), () => {
-                console.log(is_loot ? "Loot" : "Skill");
-                res.send(is_loot ? "0" : "1");
+                console.log("Progression model" + oldProgressionModel);
+                res.send(oldProgressionModel.toString());
             });
         },
         true);
