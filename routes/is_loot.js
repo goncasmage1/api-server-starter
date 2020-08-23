@@ -31,7 +31,7 @@ const is_loot_routes = (app, fs) => {
             var oldProgressionModel = progressionModel;
             data["num"] = progressionModel >= 2 ? 0 : progressionModel + 1;
             writeFile(JSON.stringify(data, null, 2), () => {
-                console.log("Progression model" + oldProgressionModel);
+                console.log("Progression model " + oldProgressionModel);
                 res.send(oldProgressionModel.toString());
             });
         },
